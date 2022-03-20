@@ -1,4 +1,4 @@
-import imp
+from operator import index
 from openpyxl import load_workbook, Workbook
 import numpy as np
 import pandas as pd
@@ -43,13 +43,12 @@ infor_by_pd = pd.read_excel('总箱单表-12点00修改.xlsx','总箱单')
 #     print(infor_by_pd.loc[x,'车头号'])
 
 
-for n in range(6,16):
-    print(infor_by_pd.loc[n,'箱件数  PKGs Qt\'y'])
-    
-    print(infor_by_pd.loc[n,'规格型号  Specification'])
 
 # 按照车头号的值进行排序
-sorted_df = infor_by_pd.sort_values(by='车头号')
-print(sorted_df.describe)
-print(type(infor_by_pd))
+# reset.index() 对排序的df对象重新建立索引
+sorted_df = infor_by_pd.sort_values(by='车头号').reset_index()
+print(sorted_df)
+# print(type(infor_by_pd))
 # 
+for n in range(0,30):
+    print(sorted_df.loc[n,'车头号'])
